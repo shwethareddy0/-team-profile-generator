@@ -8,6 +8,7 @@ const Intern = require("./lib/Intern");
 
 console.log("Welcome to the team generator!");
 console.log("Use 'npm run reset' to reset the dist/folder");
+
 console.log("Please build your team");
 
 // Create an array of questions for user input
@@ -92,3 +93,45 @@ const internQuestions = [
     message: "What is your intern's school?",
   },
 ];
+let employeeArr = [];
+// Create a function to initialize app
+async function init() {
+  const managerAnswers = await inquirer.prompt(managerQuestions);
+
+  const managerObj = new Manager(
+    managerAnswers.name,
+    managerAnswers.id,
+    managerAnswers.email,
+    managerAnswers.officenumber
+  );
+  employeeArr.push(managerObj);
+  let nextRoleAnswer = await inquirer.prompt(roleQuestion);
+  while (nextRoleAnswer.role == "Engineer" || nextRoleAnswer.role == "Intern") {
+    if (nextRoleAnswer.role == "Engineer") {
+      const engineerAnswers = await inquirer.prompt(engineerQuestions);
+
+      const engineerObj = new Engineer(
+        engineerAnswers.name,
+        engineerAnswers.id,
+        engineerAnswers.email,
+        engineerAnswers.github
+      );
+      employeeArr.push(engineerObj);
+    } else if (nextRoleAnswer.role == "Intern") {
+      const internAnswers = await inquirer.prompt(internQuestions);
+
+      const internObj = new Intern(
+        internAnswers.name,
+        internAnswers.id,
+        internAnswers.email,
+        internAnswers.school
+      );
+      employeeArr.push(internObj);
+    }
+    nextRoleAnswer = await inquirer.prompt(roleQuestion);
+  }
+  console.log(employeeArr);
+}
+
+// Function call to initialize app
+init();
