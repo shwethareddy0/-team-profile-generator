@@ -1,6 +1,6 @@
 const Employee = require("../lib/Employee");
 
-const testEmployee = new Employee("temp employee", 5, "abc@gmail.com");
+const testEmployee = new Employee("temp employee", 1, "abc@gmail.com");
 
 describe("Employee test", () => {
   it("returns Employee name", () => {
@@ -8,7 +8,7 @@ describe("Employee test", () => {
   });
 
   it("returns Employee id", () => {
-    expect(testEmployee.getId()).toBe(5);
+    expect(testEmployee.getId()).toBe(1);
   });
 
   it("returns Employee email", () => {
