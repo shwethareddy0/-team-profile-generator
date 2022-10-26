@@ -176,14 +176,29 @@ function generateHTML(employeeArr) {
           <i class="fa-solid fa-mug-hot m-2"></i>
           <i class="fa-solid fa-glasses m-2"></i>
           <i class="fa-solid fa-user-graduate m-2"></i>
-          <p class="m-2">Manager</p>
+          <p class="m-2">${employee.getRole()}</p>
         </div>
       </div>
       <div class="card-body bg-light">
         <ul class="list-group mb-3">
-          <li class="list-group-item">ID: 1</li>
-          <li class="list-group-item">Email: abc@yahoo.com</li>
-          <li class="list-group-item">Office number: 1</li>
+          <li class="list-group-item">ID: ${employee.getId()}</li>
+          <li class="list-group-item">Email: ${employee.getEmail()}</li>
+
+          ${
+            employee.getRole() === "Manager"
+              ? `<li class="list-group-item">Office number: ${employee.getOfficeNumber()}</li>`
+              : ""
+          }
+          ${
+            employee.getRole() === "Engineer"
+              ? `<li class="list-group-item">GitHub: ${employee.getGithub()}</li>`
+              : ""
+          }
+          ${
+            employee.getRole() === "Intern"
+              ? `<li class="list-group-item">School: ${employee.getSchool()}</li>`
+              : ""
+          }
         </ul>
       </div>
     </div>`;
