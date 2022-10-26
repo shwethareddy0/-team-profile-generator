@@ -93,6 +93,7 @@ const internQuestions = [
     message: "What is your intern's school?",
   },
 ];
+
 let employeeArr = [];
 // Create a function to initialize app
 async function init() {
@@ -137,6 +138,7 @@ async function init() {
 
 // Function call to initialize app
 init();
+
 function generateHTML(employeeArr) {
   const generatedHTML = `<!DOCTYPE html>
 <html lang="en">
@@ -165,9 +167,11 @@ function generateHTML(employeeArr) {
         <h1>My Team</h1>
       </div>
     </div>
+  ${employeeArr.map((employee) => {
+    return `
     <div class="card" style="max-width: 18rem">
       <div class="card-header text-white bg-primary">
-        <p>Jared</p>
+        <p>${employee.getName()}</p>
         <div class="row">
           <i class="fa-solid fa-mug-hot m-2"></i>
           <i class="fa-solid fa-glasses m-2"></i>
@@ -182,7 +186,8 @@ function generateHTML(employeeArr) {
           <li class="list-group-item">Office number: 1</li>
         </ul>
       </div>
-    </div>
+    </div>`;
+  })}
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -208,6 +213,7 @@ function generateHTML(employeeArr) {
   // return str;
   return generatedHTML;
 }
+
 // Create a function to write HTML file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) =>
