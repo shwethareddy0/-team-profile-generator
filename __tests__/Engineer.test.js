@@ -6,7 +6,7 @@ const testEngineer = new Engineer(
   "abc@gmail.com",
   "shwethareddy0"
 );
-
+// This test suite is to veriify the engineer class. It creates an object and make sure getters are returning the proper data.
 describe("Engineer test", () => {
   it("returns Engineer name", () => {
     expect(testEngineer.getName()).toBe("temp Engineer");

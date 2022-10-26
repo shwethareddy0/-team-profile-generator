@@ -2,6 +2,7 @@ const Manager = require("../lib/Manager");
 
 const testManager = new Manager("temp manager", 2, "abc@gmail.com", 1);
 
+// This test suite is to veriify the manager class. It creates an object and make sure getters are returning the proper data.
 describe("Manager test", () => {
   it("returns Manager name", () => {
     expect(testManager.getName()).toBe("temp manager");

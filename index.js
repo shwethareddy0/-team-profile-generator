@@ -95,10 +95,10 @@ const internQuestions = [
 ];
 
 let employeeArr = [];
-// Create a function to initialize app
+// Create a async function to initialize app
 async function init() {
   const managerAnswers = await inquirer.prompt(managerQuestions);
-
+  // Create a object for manager class
   const managerObj = new Manager(
     managerAnswers.name,
     managerAnswers.id,
@@ -107,10 +107,12 @@ async function init() {
   );
   employeeArr.push(managerObj);
   let nextRoleAnswer = await inquirer.prompt(roleQuestion);
+  // While loop until user opts for exit option
   while (nextRoleAnswer.role == "Engineer" || nextRoleAnswer.role == "Intern") {
     if (nextRoleAnswer.role == "Engineer") {
       const engineerAnswers = await inquirer.prompt(engineerQuestions);
 
+      // Create a object for engineer class
       const engineerObj = new Engineer(
         engineerAnswers.name,
         engineerAnswers.id,
@@ -121,6 +123,7 @@ async function init() {
     } else if (nextRoleAnswer.role == "Intern") {
       const internAnswers = await inquirer.prompt(internQuestions);
 
+      // Create a object for intern class
       const internObj = new Intern(
         internAnswers.name,
         internAnswers.id,
@@ -131,14 +134,15 @@ async function init() {
     }
     nextRoleAnswer = await inquirer.prompt(roleQuestion);
   }
-  console.log(employeeArr);
   const htmlPageContent = generateHTML(employeeArr);
+  // Write HTML content to the file system under the dist folder.
   writeToFile("dist/index.html", htmlPageContent);
 }
 
 // Function call to initialize app
 init();
 
+// Generating the HTML file (template engine)
 function generateHTML(employeeArr) {
   const generatedHTML = `<!DOCTYPE html>
 <html lang="en">
@@ -239,11 +243,6 @@ function generateHTML(employeeArr) {
   </body>
 </html>
 `;
-  // let str = "";
-  // for (let i = 0; i < employeeArr.length; i++) {
-  //   str += "  " + employeeArr[i].name;
-  // }
-  // return str;
   return generatedHTML;
 }
 

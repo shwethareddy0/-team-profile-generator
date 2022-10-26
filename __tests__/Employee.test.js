@@ -2,6 +2,7 @@ const Employee = require("../lib/Employee");
 
 const testEmployee = new Employee("temp employee", 1, "abc@gmail.com");
 
+// This test suite is to veriify the employee class. It creates an object and make sure getters are returning the proper data.
 describe("Employee test", () => {
   it("returns Employee name", () => {
     expect(testEmployee.getName()).toBe("temp employee");
