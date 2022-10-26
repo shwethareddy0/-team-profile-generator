@@ -164,32 +164,31 @@ function generateHTML(employeeArr) {
       class="jumbotron jumbotron-fluid p-3 mb-2 bg-danger text-white text-center"
     >
       <div class="container-fluid">
-        <h1>My Team</h1>
+        <h3>My Team</h3>
       </div>
     </div>
   ${employeeArr.map((employee) => {
     return `
     <div class="card" style="max-width: 18rem">
       <div class="card-header text-white bg-primary">
-        <p>${employee.getName()}</p>
+        <h4>${employee.getName()}</h4>
         <div class="row">
-
          ${
            employee.getRole() === "Manager"
-             ? ` <i class="fa-solid fa-mug-hot m-2"></i>`
+             ? ` <i class="fa-solid fa-mug-hot mx-2 mt-1"></i>`
              : ""
          }
           ${
             employee.getRole() === "Engineer"
-              ? `<i class="fa-solid fa-glasses m-2"></i>`
+              ? `<i class="fa-solid fa-glasses mx-2 mt-1"></i>`
               : ""
           }
           ${
             employee.getRole() === "Intern"
-              ? `<i class="fa-solid fa-user-graduate m-2"></i>`
+              ? `<i class="fa-solid fa-user-graduate mx-2 mt-1"></i>`
               : ""
           }
-          <p class="m-2">${employee.getRole()}</p>
+          <h5>${employee.getRole()}</h5>
         </div>
       </div>
       <div class="card-body bg-light">
@@ -205,7 +204,9 @@ function generateHTML(employeeArr) {
           }
           ${
             employee.getRole() === "Engineer"
-              ? `<li class="list-group-item">GitHub: ${employee.getGithub()}</li>`
+              ? `<li class="list-group-item">GitHub: <a href="https://github.com/${employee.getGithub()}" target="_blank"
+              >${employee.getGithub()}</a
+            ></li>`
               : ""
           }
           ${
