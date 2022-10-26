@@ -133,7 +133,7 @@ async function init() {
   }
   console.log(employeeArr);
   const htmlPageContent = generateHTML(employeeArr);
-  writeToFile("index.html", htmlPageContent);
+  writeToFile("dist/index.html", htmlPageContent);
 }
 
 // Function call to initialize app
@@ -167,9 +167,11 @@ function generateHTML(employeeArr) {
         <h3>My Team</h3>
       </div>
     </div>
+     <div class="container d-flex justify-content-center flex-wrap p-5">
   ${employeeArr.map((employee) => {
     return `
-    <div class="card" style="max-width: 18rem">
+ 
+    <div class="card shadow bg-light m-2" style="max-width: 18rem">
       <div class="card-header text-white bg-primary">
         <h4>${employee.getName()}</h4>
         <div class="row">
@@ -218,7 +220,8 @@ function generateHTML(employeeArr) {
       </div>
     </div>`;
   })}
-    <script
+     </div>
+     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
